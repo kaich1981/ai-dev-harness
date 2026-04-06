@@ -1,141 +1,155 @@
-# 📈 AI Stock Assistant (Example Project)
+# AI Stock Assistant
 
-> Example project built with ai-dev-harness
+> A runnable MVP example built with ai-dev-harness SOP
 
----
+## Quick Start
 
-# 🎯 项目目标
-
-一个最小可用的 AI 股票助手：
-
-* 输入股票信息
-* 返回建议
-* 提供风险提示
-
----
-
-# 🧠 为什么做这个例子？
-
-让你看到：
-
-> 如何用 SOP 从 0 → 可运行项目
-
----
-
-# 🧩 功能范围（MVP）
-
-✅ 股票分析
-✅ 风险建议
-
-❌ 不做实时行情
-❌ 不做复杂策略
-
----
-
-# 🏗️ 架构
-
-```
-Frontend (可选)
- ↓
-FastAPI
- ↓
-AI Service
- ↓
-Database
+```bash
+cd examples/ai_stock_assistant
+pip install -r requirements.txt
+python -m pytest tests/ -v        # run tests
+uvicorn app.main:app --reload     # start server
 ```
 
----
+Or use the one-liner:
 
-# 📄 API示例
+```bash
+bash run.sh
+```
 
-## POST /api/stock/analyze
+## API Endpoints
+
+| Method | Path                  | Description          |
+| ------ | --------------------- | -------------------- |
+| POST   | `/api/stock/analyze`  | Analyze a stock      |
+| GET    | `/api/stock/history`  | Query history        |
+| GET    | `/health`             | Health check         |
+| GET    | `/docs`               | Swagger UI (auto)    |
+
+### Example: Analyze
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/stock/analyze \
+  -H "Content-Type: application/json" \
+  -d '{"stock_code": "AAPL", "cost_price": 180}'
+```
 
 ```json
-Request:
 {
   "stock_code": "AAPL",
-  "cost_price": 180
+  "trend": "stable",
+  "suggestion": "Hold current position. Monitor for breakout signals.",
+  "confidence": 0.68,
+  "risk_note": "This is an AI-generated analysis for AAPL. It does not constitute financial advice."
 }
+```
+
+## Project Structure
+
+```
+ai_stock_assistant/
+  contracts/          # API / DB / AI output contracts (define before coding)
+  tasks/              # Task breakdown (one task at a time)
+  app/
+    api/              # FastAPI route handlers
+    service/          # Business logic & AI service
+    models/           # SQLAlchemy models + DB connection
+    schemas/          # Pydantic request/response schemas
+  tests/              # Pytest test cases
+  requirements.txt
+  run.sh              # One-click start
+```
+
+## SOP Workflow Demonstrated
+
+1. **Contracts first** -- see `contracts/` for API, DB, and AI output contracts
+2. **Task breakdown** -- see `tasks/TASK_LIST.md` for step-by-step tasks
+3. **Per-task implementation** -- each module maps to one task
+4. **Validation** -- tests cover contract compliance
+5. **Iterate** -- swap `_analyze()` in `stock_service.py` with a real LLM call
+
+## Tech Stack
+
+- FastAPI + Uvicorn
+- SQLAlchemy + SQLite (swap to MySQL/PostgreSQL for production)
+- Pydantic v2
+- Pytest + httpx
+
+---
+
+# AI 股票助手（中文版）
+
+> 基于 ai-dev-harness SOP 构建的可运行 MVP 示例
+
+## 快速开始
+
+```bash
+cd examples/ai_stock_assistant
+pip install -r requirements.txt
+python -m pytest tests/ -v        # 运行测试
+uvicorn app.main:app --reload     # 启动服务
+```
+
+或者一键启动：
+
+```bash
+bash run.sh
+```
+
+## API 接口
+
+| 方法   | 路径                   | 说明          |
+| ------ | --------------------- | ------------- |
+| POST   | `/api/stock/analyze`  | 分析股票       |
+| GET    | `/api/stock/history`  | 查询分析历史    |
+| GET    | `/health`             | 健康检查       |
+| GET    | `/docs`               | Swagger 文档   |
+
+### 示例：分析股票
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/stock/analyze \
+  -H "Content-Type: application/json" \
+  -d '{"stock_code": "AAPL", "cost_price": 180}'
 ```
 
 ```json
-Response:
 {
-  "trend": "down",
-  "suggestion": "reduce position",
-  "confidence": 0.72
+  "stock_code": "AAPL",
+  "trend": "stable",
+  "suggestion": "Hold current position. Monitor for breakout signals.",
+  "confidence": 0.68,
+  "risk_note": "This is an AI-generated analysis for AAPL. It does not constitute financial advice."
 }
 ```
 
----
+## 项目结构
 
-# 🧩 数据库设计
-
-```sql
-Table: stock_position
-
-id INT
-stock_code VARCHAR
-cost_price DECIMAL
-created_at DATETIME
+```
+ai_stock_assistant/
+  contracts/          # API / DB / AI 输出契约（编码前先定义）
+  tasks/              # 任务拆分（一次一个任务）
+  app/
+    api/              # FastAPI 路由处理
+    service/          # 业务逻辑 & AI 服务
+    models/           # SQLAlchemy 模型 + 数据库连接
+    schemas/          # Pydantic 请求/响应定义
+  tests/              # Pytest 测试用例
+  requirements.txt
+  run.sh              # 一键启动脚本
 ```
 
----
+## SOP 流程演示
 
-# 🚀 如何开发（按SOP）
+1. **契约先行** -- 见 `contracts/` 目录，包含 API、数据库、AI 输出契约
+2. **任务拆分** -- 见 `tasks/TASK_LIST.md`，逐步拆解的开发任务
+3. **逐任务实现** -- 每个模块对应一个任务
+4. **验收测试** -- 测试覆盖契约合规性
+5. **迭代优化** -- 将 `stock_service.py` 中的 `_analyze()` 替换为真实 LLM 调用
 
----
+## 技术栈
 
-## Step 1：定义契约
-
-* API
-* DB结构
-
----
-
-## Step 2：拆任务
-
-```text
-1. 初始化项目
-2. DB连接
-3. stock表
-4. API接口
-5. AI服务
-```
-
----
-
-## Step 3：逐任务开发
-
-每个任务：
-
-* 调用AI
-* 验收
-* commit
-
----
-
-# 🧪 示例任务
-
-## Task: 实现股票分析接口
-
-输出：
-
-* /api/stock.py
-* /service/stock_service.py
-
----
-
-# 🔥 核心收获
-
-你会学到：
-
-* 如何控制AI
-* 如何避免代码失控
-* 如何快速做MVP
-
----
-
-# 🧠 一句话总结
-
-> 这是一个“如何用AI正确做项目”的示例
+- FastAPI + Uvicorn
+- SQLAlchemy + SQLite（生产环境替换为 MySQL/PostgreSQL）
+- Pydantic v2
+- Pytest + httpx
