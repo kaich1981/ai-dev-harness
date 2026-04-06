@@ -21,13 +21,11 @@ def analyze(req: StockAnalyzeRequest, db: Session = Depends(get_db)):
     record = StockAnalysis(
         stock_code=req.stock_code,
         cost_price=req.cost_price,
-        trend=result["trend"],
-        suggestion=result["suggestion"],
-        confidence=result["confidence"],
-        risk_note=result["risk_note"],
+        **result,
     )
     db.add(record)
     db.commit()
+    db.refresh(record)
 
     return StockAnalyzeResponse(stock_code=req.stock_code, **result)
 

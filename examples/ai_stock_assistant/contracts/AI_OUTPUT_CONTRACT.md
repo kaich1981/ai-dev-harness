@@ -1,15 +1,25 @@
-# AI Output Contract
+# 🤖 AI Output Contract
 
-AI service must return a JSON object with the following structure:
+---
+
+# 🇺🇸 English
+
+> AI service must return a JSON object with the following structure
+
+---
+
+## Output Format
 
 ```json
 {
-  "trend": "up | down | stable",
-  "suggestion": "string (actionable advice)",
-  "confidence": "number (0-1)",
-  "risk_note": "string (risk warning)"
+  "trend": "up | down | stable (Trend direction)",
+  "suggestion": "string (Actionable advice)",
+  "confidence": "number 0-1 (Confidence score)",
+  "risk_note": "string (Risk warning)"
 }
 ```
+
+---
 
 ## Rules
 
@@ -21,9 +31,13 @@ AI service must return a JSON object with the following structure:
 
 ---
 
-# AI 输出契约（中文版）
+# 🇨🇳 中文
 
-AI 服务必须返回以下 JSON 结构：
+> AI 服务必须返回以下 JSON 结构
+
+---
+
+## 输出格式
 
 ```json
 {
@@ -33,6 +47,8 @@ AI 服务必须返回以下 JSON 结构：
   "risk_note": "string（风险提示）"
 }
 ```
+
+---
 
 ## 规则
 

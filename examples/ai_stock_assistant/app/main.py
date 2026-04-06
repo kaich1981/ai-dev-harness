@@ -3,7 +3,6 @@ from fastapi import FastAPI
 from app.api.stock import router as stock_router
 from app.models.database import Base, engine
 
-# Auto-create tables on startup
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(

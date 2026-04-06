@@ -2,23 +2,33 @@
 Stock analysis service.
 
 Uses a rule-based mock AI engine for demo purposes.
-Replace `_analyze` with a real LLM call (e.g. OpenAI / Claude API) in production.
+Replace `_analyze` with a real LLM call (e.g. Claude API) in production.
 """
 
+import logging
 import random
+
+logger = logging.getLogger(__name__)
+
+_FALLBACK_RESPONSE = {
+    "trend": "stable",
+    "suggestion": "Unable to analyze. Please try again later.",
+    "confidence": 0.0,
+    "risk_note": "Analysis unavailable. Do not make decisions based on this result.",
+}
 
 
 def analyze_stock(stock_code: str, cost_price: float) -> dict:
     """Analyze a stock and return structured advice matching AI_OUTPUT_CONTRACT."""
-    return _analyze(stock_code, cost_price)
+    try:
+        return _analyze(stock_code, cost_price)
+    except Exception:
+        logger.exception("AI analysis failed for %s", stock_code)
+        return {**_FALLBACK_RESPONSE}
 
 
 def _analyze(stock_code: str, cost_price: float) -> dict:
-    """
-    Rule-based demo analysis.
-    In production, replace this with an actual LLM API call.
-    """
-    # Simulate a simple trend decision based on price range
+    """Rule-based demo analysis. Replace with an actual LLM API call in production."""
     if cost_price < 50:
         trend = "up"
         suggestion = "Good entry point. Consider building a position gradually."

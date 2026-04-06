@@ -1,6 +1,9 @@
 from datetime import datetime
+from typing import Literal
 
 from pydantic import BaseModel, Field
+
+Trend = Literal["up", "down", "stable"]
 
 
 class StockAnalyzeRequest(BaseModel):
@@ -10,9 +13,9 @@ class StockAnalyzeRequest(BaseModel):
 
 class StockAnalyzeResponse(BaseModel):
     stock_code: str
-    trend: str
+    trend: Trend
     suggestion: str
-    confidence: float
+    confidence: float = Field(..., ge=0, le=1)
     risk_note: str
 
 
@@ -20,9 +23,9 @@ class StockHistoryItem(BaseModel):
     id: int
     stock_code: str
     cost_price: float
-    trend: str
+    trend: Trend
     suggestion: str
-    confidence: float
+    confidence: float = Field(..., ge=0, le=1)
     risk_note: str | None
     created_at: datetime
 

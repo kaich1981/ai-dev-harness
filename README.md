@@ -1,23 +1,25 @@
 # 🚀 ai-dev-harness
 
-> A structured system to build AI-powered applications with control, not chaos.
+> Build AI-powered applications with control, not chaos.
 
 ---
 
+# 🇺🇸 English
+
 ## 🧠 What is ai-dev-harness?
 
-**ai-dev-harness** is a practical framework for building AI-driven applications as a solo developer.
+ai-dev-harness is a structured system for building AI-driven applications as a solo developer.
 
-It helps you move from:
-
-```
-❌ Prompt → Code → Chaos
-```
-
-to:
+It transforms development from:
 
 ```
-✅ System → Contract → Task → Controlled AI Development
+Prompt → Code → Chaos
+```
+
+into:
+
+```
+System → Contract → Task → Controlled AI Development
 ```
 
 ---
@@ -26,40 +28,23 @@ to:
 
 Most AI-generated projects fail because:
 
-* AI writes too much at once
-* No structure or constraints
-* No validation or iteration
-* Code becomes unmaintainable quickly
-
-This project solves that by introducing:
-
-> **Harness Engineering for AI Development**
-
-A system that makes AI:
-
-* controllable
-* testable
-* modular
-* production-ready
+* Too much code generated at once
+* Lack of structure and constraints
+* No validation mechanism
+* Code becomes unmaintainable
 
 ---
 
 ## 🧩 Core Concept
 
-Instead of asking AI to generate the whole project:
+Instead of:
 
-> ❌ “Generate a full app”
+> “Generate a full project”
 
-We do:
+We use:
 
 ```
-Idea
- → Requirement
- → Contract (DB/API)
- → Task Breakdown
- → AI per-task execution
- → Validation
- → Iteration
+Idea → Requirement → Contract → Task → AI Execution → Validation → Iteration
 ```
 
 ---
@@ -67,138 +52,33 @@ Idea
 ## 🏗️ Project Structure
 
 ```
-.
-├── docs/          # SOP, contracts, design docs
-├── prompts/       # Reusable AI prompt templates
-├── templates/     # Task / project templates
-├── backend/       # FastAPI starter (AI-ready)
-├── tests/         # Basic test cases
-└── .github/       # CI workflows
+docs/
+prompts/
+templates/
+examples/
+backend/
+contracts/
 ```
 
 ---
 
 ## ⚙️ How It Works
 
-### 1️⃣ Define Problem (MVP First)
-
-* Who is the user?
-* What is the core pain?
-* What is the smallest usable version?
-
----
-
-### 2️⃣ Define Contracts (🔥 Most Important)
-
-* Database schema
-* API structure
-* Output format
-
-```json
-{
-  "trend": "string",
-  "suggestion": "string",
-  "confidence": "0-1"
-}
-```
-
----
-
-### 3️⃣ Break Into Tasks
-
-Each task must be:
-
-* Small (≤ 1 hour)
-* Isolated
-* Testable
-
----
-
-### 4️⃣ AI Executes Per Task
-
-Use controlled prompts:
-
-```
-- Only implement this task
-- Follow the contract
-- Do not modify other modules
-```
-
----
-
-### 5️⃣ Validate Every Step
-
-* Can it run?
-* Does it match contract?
-* Any fake logic?
-* Any side effects?
-
----
-
-### 6️⃣ Iterate Safely
-
-* Git commit per task
-* Regression check
-* Continuous improvement
+1. Define problem (MVP)
+2. Define contracts (API / DB)
+3. Break into tasks
+4. AI executes per task
+5. Validate each step
+6. Iterate safely
 
 ---
 
 ## 📘 Documentation
 
-* 👉 [AI Development SOP](docs/AI_DEV_SOP.md)
-* 👉 Contracts (API / DB)
-* 👉 Task Templates
-* 👉 Review Checklist
-
----
-
-## 🧱 Tech Stack (Default)
-
-* FastAPI (Backend)
-* MySQL (Database)
-* LLM API (AI layer)
-
----
-
-## 🧪 Example Use Cases
-
-* AI stock assistant
-* AI productivity tools
-* AI SaaS MVP
-* Internal automation tools
-
----
-
-## 🔥 Key Principles
-
-### ❗ AI is NOT the architect
-
-You are.
-
----
-
-### ❗ No contract, no code
-
----
-
-### ❗ Never generate the whole project
-
----
-
-### ❗ Every step must be verifiable
-
----
-
-### ❗ Start small, iterate fast
-
----
-
-## 🧑‍💻 Who is this for?
-
-* Solo developers
-* Indie hackers
-* Engineers building AI products
-* Anyone tired of messy AI-generated code
+* docs/AI_DEV_SOP.md
+* docs/TASK_TEMPLATE.md
+* prompts/PROMPT_TEMPLATE.md
+* docs/ARCHITECTURE.md
 
 ---
 
@@ -207,43 +87,111 @@ You are.
 ```bash
 git clone https://github.com/YOUR_USERNAME/ai-dev-harness.git
 cd ai-dev-harness
+make run
 ```
 
-1. Read `docs/AI_DEV_SOP.md`
-2. Pick a project idea
-3. Define contracts
-4. Start with Task #1
+---
+
+## 🔥 Principles
+
+* No contract, no code
+* Never generate full project
+* Every step must be verifiable
+* AI is execution layer, not control layer
 
 ---
 
-## 📈 Roadmap
+# 🇨🇳 中文
 
-* [ ] Frontend template (Next.js / Mini Program)
-* [ ] Docker setup
-* [ ] CLI for task generation
-* [ ] Prompt testing system
-* [ ] AI evaluation framework
+## 🧠 什么是 ai-dev-harness？
 
----
+ai-dev-harness 是一套面向个人开发者的 AI 工程化开发体系。
 
-## 🤝 Contributing
+它将开发方式从：
 
-Contributions are welcome!
+```
+Prompt → Code → 混乱
+```
 
-* Improve templates
-* Add workflows
-* Share real use cases
+转变为：
 
----
-
-## ⭐ If this helps you...
-
-Give it a star ⭐
-It helps more developers build AI projects the right way.
+```
+系统 → 契约 → 任务 → 可控AI开发
+```
 
 ---
 
-## 🧩 Philosophy
+## 🎯 为什么做这个项目？
 
-> Don't let AI control your project
-> Build a system that controls AI
+大多数 AI 项目失败原因：
+
+* 一次生成过多代码
+* 缺乏结构和约束
+* 没有验证机制
+* 代码不可维护
+
+---
+
+## 🧩 核心理念
+
+不要：
+
+> “一次生成整个项目”
+
+而是：
+
+```
+想法 → 需求 → 契约 → 任务 → AI执行 → 验收 → 迭代
+```
+
+---
+
+## 🏗️ 项目结构
+
+```
+docs/
+prompts/
+templates/
+examples/
+backend/
+contracts/
+```
+
+---
+
+## ⚙️ 工作流程
+
+1. 定义问题（MVP）
+2. 定义契约
+3. 拆分任务
+4. AI逐任务执行
+5. 验收
+6. 迭代
+
+---
+
+## 📘 文档
+
+* docs/AI_DEV_SOP.md
+* docs/TASK_TEMPLATE.md
+* prompts/PROMPT_TEMPLATE.md
+* docs/ARCHITECTURE.md
+
+---
+
+## 🚀 快速开始
+
+```bash
+git clone https://github.com/YOUR_USERNAME/ai-dev-harness.git
+cd ai-dev-harness
+make run
+```
+
+---
+
+## 🔥 核心原则
+
+* 没有契约，不写代码
+* 禁止一次生成整个项目
+* 每一步必须可验证
+* AI是执行层，不是控制层

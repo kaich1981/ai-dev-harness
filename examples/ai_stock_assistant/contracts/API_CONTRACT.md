@@ -1,25 +1,33 @@
-# API Contract
+# 🔗 API Contract
+
+---
+
+# 🇺🇸 English
+
+> All endpoints must strictly follow this contract
+
+---
 
 ## POST /api/stock/analyze
 
-### Request
+### Request Body
 
 ```json
 {
-  "stock_code": "string",
-  "cost_price": "number"
+  "stock_code": "string (Stock ticker)",
+  "cost_price": "number (Buy/cost price)"
 }
 ```
 
-### Response
+### Success Response
 
 ```json
 {
-  "stock_code": "string",
-  "trend": "up | down | stable",
-  "suggestion": "string",
-  "confidence": "number (0-1)",
-  "risk_note": "string"
+  "stock_code": "string (Stock ticker)",
+  "trend": "up | down | stable (Trend direction)",
+  "suggestion": "string (Actionable advice)",
+  "confidence": "number 0-1 (Confidence score)",
+  "risk_note": "string (Risk warning)"
 }
 ```
 
@@ -27,7 +35,7 @@
 
 ```json
 {
-  "detail": "string"
+  "detail": "string (Error message)"
 }
 ```
 
@@ -37,7 +45,7 @@
 
 ### Query Params
 
-- `stock_code`: string (required)
+- `stock_code`: string (Required, stock ticker)
 
 ### Response
 
@@ -45,13 +53,14 @@
 {
   "items": [
     {
-      "id": "integer",
-      "stock_code": "string",
-      "cost_price": "number",
-      "trend": "string",
-      "suggestion": "string",
-      "confidence": "number",
-      "created_at": "datetime"
+      "id": "integer (Primary key)",
+      "stock_code": "string (Stock ticker)",
+      "cost_price": "number (Cost price)",
+      "trend": "string (Trend)",
+      "suggestion": "string (Suggestion)",
+      "confidence": "number (Confidence)",
+      "risk_note": "string (Risk note)",
+      "created_at": "datetime (Record time)"
     }
   ]
 }
@@ -59,7 +68,11 @@
 
 ---
 
-# API 契约（中文版）
+# 🇨🇳 中文
+
+> 所有接口必须严格遵循此契约
+
+---
 
 ## POST /api/stock/analyze
 
@@ -112,6 +125,7 @@
       "trend": "string（趋势）",
       "suggestion": "string（建议）",
       "confidence": "number（置信度）",
+      "risk_note": "string（风险提示）",
       "created_at": "datetime（创建时间）"
     }
   ]
